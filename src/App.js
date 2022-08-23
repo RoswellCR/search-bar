@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import Searchbar from './components/SearchBar';
 
 const people = [
 {
@@ -74,10 +75,18 @@ function App() {
   return (
     
         <div>
-          <button onClick= {handleClick} name='all'> All </button>
-          <button onClick= {handleClick} name='people'> People </button>
-          <button onClick= {handleClick} name='calendar'> Calendar </button>
-          <div>{data.map(item=>item.title+',  ')}</div>
+          <div>
+            <button onClick= {handleClick} name='all'> All </button>
+            <button onClick= {handleClick} name='people'> People </button>
+            <button onClick= {handleClick} name='calendar'> Calendar </button>
+            <div>{data.map(item=>item.title+',  ')}</div>
+          </div>
+          <div>
+            <Searchbar 
+              items={data} 
+              onItemSelected={()=>{}}
+            />
+          </div>
         </div>
     
   );
