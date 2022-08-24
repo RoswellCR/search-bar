@@ -1,4 +1,26 @@
 import { useMemo } from "react";
+import styled from "styled-components";
+
+const StyledMarker = styled.span`
+background-color: yellow;
+font-weight: bolder;
+border-radius: 2px;
+`
+const StyledItem = styled.a`
+color: black;
+display: block;
+padding: 10px;
+border: none;
+text-decoration: none;
+cursor: pointer;
+&:hover {
+    background-color: #4c91ba;
+    color: white;
+}
+&:hover span {
+    color: black;
+}
+`
 
 export default function MarketItem({ item, query, onClick }) {
   const { left, center, right } = useMemo(
@@ -18,14 +40,17 @@ export default function MarketItem({ item, query, onClick }) {
       right,
     };
   }
+  const handleClick=()=>{
+      onClick(item)
+  }
 
   return (
-    <button>
+    <StyledItem onClick={handleClick}> 
       {left}
-      <span style={{ fontWeight: "bolder", backgroundColor: "yellow" }}>
+      <StyledMarker>
         {center}
-      </span>
+      </StyledMarker>
       {right}
-    </button>
+    </StyledItem>
   );
 }

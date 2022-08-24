@@ -1,5 +1,17 @@
 import { useState, useMemo, useEffect } from "react";
 import MarketItem from "./MarketItem";
+import styled from "styled-components";
+
+const ResultContainer = styled.div`
+position: absolute;
+width: 400px;
+background: white;
+border: solid 1px #222;
+border-top: solid 1px transparent;
+margin-top: -3px;
+box-sizing: border-box;
+border-radius: 0 0 5px 5px;
+`
 
 export default function Results({
   items,
@@ -7,6 +19,7 @@ export default function Results({
   query,
   onResultsCalculated,
 }) {
+  
   const [result, setResult] = useState([]);
 
   const filteredItems = useMemo(() => findMatch(items, query), [items, query]);
@@ -26,7 +39,7 @@ export default function Results({
   }
 
   return (
-    <div>
+    <ResultContainer>
       {query !== ""
         ? filteredItems.map((item) => (
             <MarketItem
@@ -37,6 +50,6 @@ export default function Results({
             />
           ))
         : ""}
-    </div>
+    </ResultContainer>
   );
 }
